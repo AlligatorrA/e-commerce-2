@@ -1,0 +1,21 @@
+.cart-Container{
+    height: 77.3vh;
+}
+.cartWidth{
+width: 900px;
+max-height: 200px;
+}
+.pDetWid{
+    min-width: 330px;
+    height: 300px;
+}
+.padTob{
+    padding: 15px 0;
+}
+.maxWidth{
+    max-width:  1500px;
+    margin: auto;
+}
+.rltPos{
+    position: relative;
+}

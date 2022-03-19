@@ -1,0 +1,49 @@
+.homContainer{
+    display: grid;
+    height: 77vh;
+    width: 99.2vw;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows:repeat(10, 1fr);
+}
+.leftSideBox{
+    grid-column: 1/6;
+    grid-row: 1/11;
+    object-fit: cover;
+  position: relative;
+}
+.rightSideBox{
+      grid-column: 6/11;
+    grid-row: 1/11;
+    object-fit: cover;
+  position: relative;
+}
+.img-div {
+  position: absolute;
+  object-position: center;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+@media screen and (max-width:800px) {
+  .homContainer{
+    display: grid;
+    height: 100vh;
+    width: 99.3vw;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows:repeat(10, 1fr);
+}
+.leftSideBox{
+    grid-column: 1/11;
+    grid-row: 1/6;
+    object-fit: cover;
+  position: relative;
+  height: 40vh;
+}
+.rightSideBox{
+      grid-column: 1/11;
+    grid-row: 6/11;
+    object-fit: cover;
+  position: relative;
+  height: 40vh;
+}
+}

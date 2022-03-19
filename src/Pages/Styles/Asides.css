@@ -1,0 +1,83 @@
+.asideAnd_main {
+    display: flex;
+    height: 77.5vh;
+}
+
+.doc_header {
+    display: grid;
+    border-bottom: 2px solid var(--primary-textColor);
+    height: 6rem;
+}
+
+.doc_aside {
+    border-right: 2px solid var(--primary-textColor);
+    min-width: 23rem;
+    overflow-y: scroll;
+}
+
+.doc_main {
+    overflow-y: auto;
+    width: calc(100vw - 23rem);
+}
+
+.main_footer {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    border-top: 2px solid var(--primary-textColor);
+    bottom: 0;
+}
+
+.asideAlink {
+    width: 95%;
+    padding: 0.5em 01em;
+    margin: 0 10px;
+    border-radius: 8px;
+}
+
+.asideAlink:hover {
+    background-color: black;
+}
+.asideAlink:focus {
+    background-color: black;
+}
+
+.active {
+    padding: 10px;
+    border-radius: 5px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+#toogle_Aside {
+    padding: 6px;
+    /* position: fixed; */
+    width: 100%;
+    top: 95px;
+}
+.Pricerange-box {
+    width: 19rem;
+}
+.range-box {
+    width: 13rem;
+}
+@media screen and (max-width: 1200px) {
+    .main_Content_aside {
+        display: none;
+    }
+    .doc_aside {
+        display: none;
+        max-width: 20rem;
+    }
+    .doc_main {
+        width: 100vw;
+    }
+    .main_Content {
+        width: 100vw;
+    }
+    #toogle_Aside {
+        padding: 13px;
+        width: 100%;
+        top: 6rem;
+    }
+}

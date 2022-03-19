@@ -1,0 +1,39 @@
+.formBox {
+    max-width: 50rem;
+    margin: 50px auto;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 4px;
+}
+.gridBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 10px;
+}
+.inputBox {
+    padding: 0.4rem 10px;
+    border: none;
+    border-bottom: 3px solid black;
+}
+.addressBox {
+    border: 2px solid black;
+    max-width: 500px;
+    border-radius: 4px;
+    margin: 20px;
+    padding: 1rem;
+}
+.formManager{
+    max-width: 800px;
+    margin: auto;
+}
+.submit-btn{
+    background-color: green;
+}
+.userClass{
+    height: 77vh;
+}
+.addressManagement{
+max-width: 100vw;
+height: 77vh;
+}

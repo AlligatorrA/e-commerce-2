@@ -1,0 +1,17 @@
+.search_label {
+    height: 42px;
+    padding: 10px 13px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.search-input {
+    width: 16rem;
+    font-size: large;
+}
+
+@media screen and (max-width: 1000px) {
+    .options_nav > .search_label {
+        display: none;
+    }
+}

@@ -1,0 +1,47 @@
+.card_container {
+    max-width: 390px;
+    max-height: 640px;
+    border: 2px solid rgb(70, 72, 73);
+    border-radius: 5px;
+}
+.card_body {
+    margin: 1rem;
+}
+.card_paragraph {
+    padding: 1rem 0;
+}
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+}
+.cardImageBox {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+}
+.card_image {
+    width: 100%;
+    object-fit: fill;
+    /* position: absolute; */
+}
+.cross_icon {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mappedProduct {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
