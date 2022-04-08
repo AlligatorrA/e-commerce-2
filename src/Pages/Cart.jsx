@@ -7,16 +7,21 @@ import './Styles/navbar.css'
 import './Styles/Necessary.css'
 import './Styles/Universal.css'
 import useDocumentTitle from './pure-functions/useDocumentTitle'
+import { useProductCart } from './context-folder/productCartContext'
+import { RemoveFromCart, updateCart } from './sevices/CartSevice'
+import { useAuth } from './context-folder/auth-context'
 
 function Cart() {
-    const { state, dispatch } = useCart()
-    const { itemsInCart, totalPrice, productCollection } = state
-    useDocumentTitle(`Cart ${itemsInCart}`)
+    const { cartState, cartDispatch } = useProductCart()
+    const { state } = useCart()
+    const { token } = useAuth()
+    const { productCollection } = cartState;
+    useDocumentTitle(`Cart (${cartState.itemsInCart})`)
     return (
         <>
             <div className='cart-Container overflow'>
                 <div className="spacer01"></div>
-                <h1 className='dis-flex just-center'>Cart: ({itemsInCart})</h1>
+                <h1 className='dis-flex just-center'>Cart: {cartState.itemsInCart}</h1>
                 <div className="spacerhalf"></div>
                 <hr />
                 <div className="spacerhalf"></div>
@@ -26,23 +31,37 @@ function Cart() {
                             productCollection.map(preProducts =>
 
 
-                                <div className='card-footer cartWidth padding01  bd-rad' key={preProducts.id}>
+                                <div className='card-footer cartWidth padding01  bd-rad' key={preProducts._id}>
                                     <img
-                                        src={preProducts.img}
+                                        src={preProducts.url}
                                         width='250px' alt="" />
                                     <div className='f24px padTob '>
                                         <p>{preProducts.name} watch</p>
                                         <div className='dis-flex align-center padTob '>
 
-                                            <button className='btn pTectColor f24px' onClick={() => dispatch({
-                                                type: "INCREASE_QUANT_IN_CART",
-                                                payload: preProducts
-                                            })}>&uArr;+&uArr;</button>
-                                            <p>  ( {preProducts.quant} ) </p>
-                                            <button className='btn pTectColor f24px' onClick={() => dispatch({
-                                                type: "DECREASE_QUANT_IN_CART",
-                                                payload: preProducts
-                                            })}>&dArr;-&dArr;</button>
+                                            <button className='btn pTectColor f24px' onClick={() => {
+                                                updateCart(
+                                                    token,
+                                                    preProducts._id,
+                                                    "increment",
+                                                    cartDispatch
+                                                );
+                                            }}
+                                            >&uArr;+&uArr;</button>
+                                            <p>  ( {preProducts.qty} ) </p>
+                                            {
+                                                preProducts.qty > 1 ?
+                                                    <button className='btn pTectColor f24px' onClick={() => {
+                                                        updateCart(
+                                                            token,
+                                                            preProducts._id,
+                                                            "decrement",
+                                                            cartDispatch
+                                                        );
+                                                    }} >&dArr; - &dArr;</button> : <button className='btn pTectColor f24px' onClick={() => {
+                                                        RemoveFromCart(token, preProducts._id, cartDispatch)
+                                                    }} > <i className="fa-solid fa-trash"></i> </button>
+                                            }
                                         </div>
                                     </div>
                                     <div className='dis-flex align-center'>&#8377; {preProducts.price} + &#8377;40 DeliveryCharge</div>
@@ -59,8 +78,8 @@ function Cart() {
                             <h2> products Detail</h2>
                             <hr />
                             <div className='card-footer padTob'>
-                                <p>Price( {itemsInCart} items)</p>
-                                <p>&#8377; {state.totalPrice}</p>
+                                <p>Price(  items)</p>
+                                <p>&#8377; </p>
                             </div>
                             <div className='card-footer padTob'>
                                 <p> Discount Price</p>
@@ -73,7 +92,7 @@ function Cart() {
                             <hr />
                             <div className='card-footer f24px padTob'>
                                 <h4>Total Amount</h4>
-                                <h4>&#8377;  {totalPrice}</h4>
+                                <h4>&#8377; {state.totalPrice}</h4>
                             </div>
 
                         </section>

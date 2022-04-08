@@ -11,7 +11,6 @@ import { useCart } from "./context-folder/cart-context";
 const AsidebarFunc = () => {
     const { state, dispatch } = useCart();
 
-
     return (
         <aside className="doc_aside dis-flex coln-flex overflow">
             <div className="spacer01 "></div>
@@ -22,7 +21,7 @@ const AsidebarFunc = () => {
                 >
                     Filter
                 </button>
-                <button className="font1en  pTectColor asideAlink padding01">
+                <button className="font1en  pTectColor asideAlink padding01" onClick={() => dispatch({ type: 'CLEAR_ALL' })}>
                     Clear detail
                 </button>
             </div>
@@ -38,6 +37,7 @@ const AsidebarFunc = () => {
                             <input
                                 type="radio"
                                 name="short"
+                                checked={state.sortBy === 'HIGH_TO_LOW'}
                                 onChange={() =>
                                     dispatch({
                                         type: "HIGH_TO_LOW"
@@ -53,6 +53,7 @@ const AsidebarFunc = () => {
                             <input
                                 type="radio"
                                 name="short"
+                                checked={state.sortBy === 'LOW_TO_HIGH'}
                                 onChange={() =>
                                     dispatch({
                                         type: "LOW_TO_HIGH"
@@ -76,6 +77,7 @@ const AsidebarFunc = () => {
                         min="6000"
                         max="20000"
                         value={state.price}
+                        checked={state.price}
                         className="Pricerange-box"
                         onChange={(e) =>
                             dispatch({
@@ -251,6 +253,7 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
+                            checked={state.categories.avaitor}
                             onChange={() => dispatch({ type: "AVAITOR" })}
                         />{" "}
                         Aviator-watch
@@ -262,6 +265,7 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
+                            checked={state.categories.analog}
                             onChange={() => dispatch({ type: "ANALOG" })}
                         />{" "}
                         Ananlog-watch
@@ -273,6 +277,7 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
+                            checked={state.categories.digital}
                             onChange={() => dispatch({ type: "DIGITAL" })}
                         />{" "}
                         Digital-watch
@@ -284,6 +289,7 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
+                            checked={state.categories.quartz}
                             onChange={() => dispatch({ type: "QUARTZ" })}
                         />{" "}
                         Quartz Watch
@@ -295,6 +301,7 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
+                            checked={state.categories.luxury}
                             onChange={() => dispatch({ type: "LUXURY" })}
                         />{" "}
                         luxury-watch
@@ -311,7 +318,8 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
-                            onClick={() => dispatch({ type: "ROLAX" })}
+                            checked={state.brand.rolax}
+                            onChange={() => dispatch({ type: "ROLAX" })}
                         />{" "}
                         Rolex
                     </label>
@@ -322,7 +330,8 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
-                            onClick={() => dispatch({ type: "PATEK_PHILIPPE" })}
+                            checked={state.brand.patekPhilippe}
+                            onChange={() => dispatch({ type: "PATEK_PHILIPPE" })}
                         />{" "}
                         Patek Philippe
                     </label>
@@ -333,7 +342,8 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
-                            onClick={() => dispatch({ type: "BLANCPAIN" })}
+                            checked={state.brand.blancpain}
+                            onChange={() => dispatch({ type: "BLANCPAIN" })}
                         />{" "}
                         Blancpain
                     </label>
@@ -344,7 +354,8 @@ const AsidebarFunc = () => {
                         <input
                             type="checkbox"
                             className="check-box"
-                            onClick={() => dispatch({ type: "OMEGA" })}
+                            checked={state.brand.omega}
+                            onChange={() => dispatch({ type: "OMEGA" })}
                         />{" "}
                         Omega
                     </label>

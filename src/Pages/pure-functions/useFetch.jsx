@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 function useFetch(url) {
-
-
-
     const [data, setData] = useState([])
     const [loader, setLoader] = useState(false)
     const [error, setError] = useState(null)
     useEffect(() => {
-        setLoader(true)
+        const abortCont = new AbortController();
+        // setLoader(true)
 
         setTimeout(() => {
             const dataFetch = async () => {
                 try {
-                    const res = await axios.get(url)
+                    const res = await axios.get(url, { signal: abortCont })
                     setData(res.data);
                     setLoader(false)
 
                 } catch (error) {
-                    setError(error);
+                    if (error.name === "AbortError") {
+                        console.log("fetch aborted");
+                    } else {
+                        setLoader(false);
+                        setError(error);
+                    }
                 }
 
             }; dataFetch()
 
-        }, 4000);
-
+        }, 2000);
+        return () => abortCont.abort();
     }, [url])
 
     return { data, loader, error }

@@ -17,7 +17,7 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Digital",
+    categoryName: "Analog",
     description: `VIBE YOU JUST CANT HIDE`,
     detail: "wear brand in affordable price",
     discount: ' A Digital silicon Smart band with 29% off... ',

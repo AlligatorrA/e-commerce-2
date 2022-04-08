@@ -1,8 +1,9 @@
 import React from 'react'
-import { FormDisplay } from './AddressManagment'
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useDocumentTitle from '../pure-functions/useDocumentTitle';
 
 function User() {
+    useDocumentTitle(`User's Details`)
     return (
         <div className='userClass' >
 

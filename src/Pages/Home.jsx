@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import useFetch from './pure-functions/useFetch'
+import loadingImg from '../images/circleSpin.gif'
 
 import './Styles/Home.css'
 import './Styles/cart.css'
@@ -9,10 +10,12 @@ import './Styles/Asides.css'
 import './Styles/navbar.css'
 import './Styles/Necessary.css'
 import './Styles/Universal.css'
+import useDocumentTitle from './pure-functions/useDocumentTitle';
 
 function Home() {
 
     const { data, loader } = useFetch('/api/categories')
+    useDocumentTitle('A TIME SHOP - Buy Your Time, Buy Your Desire')
     return (
         <div>
 
@@ -49,7 +52,8 @@ function Home() {
                     <h1>Categories</h1>
                     <hr />
                     {
-                        loader && <h1>Loading...</h1>
+                        loader &&
+                        <img src={loadingImg} width={400} alt='Loading...' />
                     }
                 </div>
             </div>
@@ -62,7 +66,7 @@ function Home() {
                         <Link to='/Product'>
                             <div className="homContainer">
                                 <div className=" leftSideBox ">
-                                    <img className='img-div' src={items.imgUrl} width='100%' alt="" />
+                                    <img className='img-div' src={items.imgUrl} width='80%' height="80%" alt="" />
                                 </div>
                                 <div className=" rightSideBox marginAll">
                                     <div className="leftSideBox dis-flex coln-flex  just-center align-center">
@@ -73,6 +77,7 @@ function Home() {
                                         <h3 className='marginAll pTectColor'>{items.detail}</h3>
                                         <div className="spacerhalf"></div>
                                         <h2 className='marginAll pTectColor'>{items.discount}</h2>
+                                        <div className="spacerhalf"></div>
                                         <div className="  dis-flex just-center ">
                                             <button className='  pTectColor  btn '>  Buy Watch </button>
                                         </div>

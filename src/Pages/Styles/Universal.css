@@ -12,9 +12,9 @@
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0px;
     /* width of the entire scrollbar */
-    height: 15px;
+    height: 1px;
 }
 
 ::-webkit-scrollbar-track {

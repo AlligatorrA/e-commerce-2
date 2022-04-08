@@ -17,7 +17,7 @@
 
 .doc_main {
     overflow-y: auto;
-    width: calc(100vw - 23rem);
+    /* width: calc(100vw - 23rem); */
 }
 
 .main_footer {
@@ -66,8 +66,7 @@
         display: none;
     }
     .doc_aside {
-        display: none;
-        max-width: 20rem;
+        max-width: 18rem;
     }
     .doc_main {
         width: 100vw;

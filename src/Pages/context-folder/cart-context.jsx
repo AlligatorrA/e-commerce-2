@@ -26,7 +26,10 @@ const CartProvider = ({ children }) => {
             patekPhilippe: false,
             blancpain: false,
             omega: false
-        }
+        },
+        itemsInWishlist: 0,
+        wishlistCollection: [],
+        productSearchFilter: ''
     });
     return (
         <CartContext.Provider value={{ state, dispatch }}>

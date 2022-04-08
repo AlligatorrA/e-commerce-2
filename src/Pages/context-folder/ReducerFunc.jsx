@@ -1,67 +1,7 @@
-const addToCartFunc = (pre, cur) => {
-    const previousProduct = pre.productCollection.find(items => items.id === cur.payload.id)
-    return {
-        ...pre,
-        itemsInCart: pre.itemsInCart + 1,
-        totalPrice: pre.totalPrice + cur.payload.price,
-        productCollection: previousProduct ? pre.productCollection.map(items => items.id === cur.payload.id
-            ? { ...items, quant: items.quant + 1 } : items
-        )
-            : [
-                ...pre.productCollection,
-                {
-                    id: cur.payload.id,
-                    quant: 1,
-                    name: cur.payload.brand,
-                    price: cur.payload.price,
-                    img: cur.payload.url
-
-                }
-            ]
-    };
-
-}
-
-const increaseQuantity = (pre, cur) => {
-    return {
-        ...pre,
-        itemsInCart: pre.itemsInCart + 1,
-        totalPrice: pre.totalPrice + cur.payload.price,
-        productCollection: pre.productCollection.map((items) => items.id === cur.payload.id ?
-            {
-                ...items,
-                quant: cur.payload.quant + 1
-            } : items)
-    }
-}
-
-const decreaseQuantity = (pre, cur) => {
-    return {
-        ...pre,
-        itemsInCart: pre.itemsInCart - 1,
-        totalPrice: pre.totalPrice - cur.payload.price,
-        productCollection: cur.payload.quant > 1 ? pre.productCollection.map(items => items.id === cur.payload.id ? {
-            ...items,
-            id: cur.payload.id,
-            quant: cur.payload.quant - 1
-        } : items
-        )
-            : pre.productCollection.filter(itemsId => itemsId.id !== cur.payload.id)
-    }
-}
 
 
 export const ReducerFunc = (pre, cur) => {
     switch (cur.type) {
-        case "ITEMS_IN_CART":
-            return addToCartFunc(pre, cur)
-
-        case "INCREASE_QUANT_IN_CART":
-            return increaseQuantity(pre, cur)
-
-        case "DECREASE_QUANT_IN_CART":
-            return decreaseQuantity(pre, cur)
-
         case "HIGH_TO_LOW":
             return {
                 ...pre,
@@ -154,6 +94,27 @@ export const ReducerFunc = (pre, cur) => {
                     omega: !pre.brand.omega
                 }
             };
+
+        case "CLEAR_ALL":
+            return {
+                sortBy: '',
+                price: 20000,
+                rating: '',
+                categories: {
+                    avaitor: false,
+                    analog: false,
+                    digital: false,
+                    quartz: false,
+                    luxury: false
+                },
+                brand: {
+                    rolax: false,
+                    patekPhilippe: false,
+                    blancpain: false,
+                    omega: false
+                },
+            }
+
         default:
             return pre;
     }
