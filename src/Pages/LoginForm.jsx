@@ -31,7 +31,7 @@ function LoginForm() {
                                     value={loginData.email}
                                     onChange={(e) => setLoginData(e.target.value)}
                                 />
-                                <span className="padding01 pTectColor">
+                                <span className=" pTectColor">
                                     <i className="fa-solid fa-at"></i>
                                 </span>
                             </label>
@@ -44,7 +44,7 @@ function LoginForm() {
                                     value={loginData.password}
                                     onChange={(e) => setLoginData(e.target.value)}
                                 />
-                                <span className="padding01 pTectColor" onClick={ToogleEye}>
+                                <span className=" pTectColor" onClick={ToogleEye}>
                                     {
                                         eye ?
                                             <i className="fa-solid fa-eye"></i> :
