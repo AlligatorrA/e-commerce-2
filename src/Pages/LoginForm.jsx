@@ -4,7 +4,7 @@ import { useAuth } from "../Pages/context-folder/auth-context";
 
 function LoginForm() {
     const navigate = useNavigate()
-    const { LoginFunc, loginData } = useAuth()
+    const { LoginFunc, loginData, setLoginData } = useAuth()
     const [eye, setEye] = useState(false)
     const [password, setPassword] = useState('password')
     const [passwordError, setPasswordError] = useState(false)

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useCart } from './context-folder/cart-context'
 import './Styles/cart.css'
 import './Styles/Product.css'
 import './Styles/Asides.css'
@@ -10,18 +9,24 @@ import useDocumentTitle from './pure-functions/useDocumentTitle'
 import { useProductCart } from './context-folder/productCartContext'
 import { RemoveFromCart, updateCart } from './sevices/CartSevice'
 import { useAuth } from './context-folder/auth-context'
+import { Bill } from './pure-functions/billFunc'
+import { AddToWishlist } from './sevices/WishlistService'
+import { useWishlist } from './context-folder/wishList-context'
 
 function Cart() {
     const { cartState, cartDispatch } = useProductCart()
-    const { state } = useCart()
+    const { wishlistDispatch } = useWishlist()
     const { token } = useAuth()
     const { productCollection } = cartState;
     useDocumentTitle(`Cart (${cartState.itemsInCart})`)
+    const billDetails = Bill(productCollection);
+    const { currentPrice, discountPrice } = billDetails;
+    const finalPrice = currentPrice - discountPrice;
     return (
         <>
             <div className='cart-Container overflow'>
                 <div className="spacer01"></div>
-                <h1 className='dis-flex just-center'>Cart: {cartState.itemsInCart}</h1>
+                <h1 className='dis-flex just-center'>Cart: {productCollection.length}</h1>
                 <div className="spacerhalf"></div>
                 <hr />
                 <div className="spacerhalf"></div>
@@ -65,6 +70,19 @@ function Cart() {
                                         </div>
                                     </div>
                                     <div className='dis-flex align-center'>&#8377; {preProducts.price} + &#8377;40 DeliveryCharge</div>
+                                    <button className="btn Card-button asideAlink"
+                                        onClick={() => {
+                                            RemoveFromCart(token, preProducts._id, cartDispatch)
+                                            AddToWishlist(token, preProducts, wishlistDispatch)
+                                        }}
+                                    >
+                                        {" "}
+                                        <span className="btn-txt-colr pTectColor ">
+                                            {" "}
+                                            Move to Wishlist
+                                        </span>
+                                        <i className="fas fa-heart pTectColor marginAll"></i>{" "}
+                                    </button>
                                 </div>
                             )
                         }
@@ -79,11 +97,11 @@ function Cart() {
                             <hr />
                             <div className='card-footer padTob'>
                                 <p>Price(  items)</p>
-                                <p>&#8377; </p>
+                                <p>&#8377; {currentPrice}</p>
                             </div>
                             <div className='card-footer padTob'>
                                 <p> Discount Price</p>
-                                <p>- &#8377; 40</p>
+                                <p>- &#8377; {discountPrice}</p>
                             </div>
                             <div className='card-footer padTob'>
                                 <p> Delivery Charges</p>
@@ -92,7 +110,7 @@ function Cart() {
                             <hr />
                             <div className='card-footer f24px padTob'>
                                 <h4>Total Amount</h4>
-                                <h4>&#8377; {state.totalPrice}</h4>
+                                <h4>&#8377; {finalPrice}</h4>
                             </div>
 
                         </section>

@@ -3,12 +3,16 @@ import { useAuth } from './context-folder/auth-context';
 import { useCart } from './context-folder/cart-context';
 import { useWishlist } from './context-folder/wishList-context';
 import useDocumentTitle from './pure-functions/useDocumentTitle';
+import { AddToCart } from './sevices/CartSevice';
 import { RemoveFromWishlist } from './sevices/WishlistService';
+import { useProductCart } from './context-folder/productCartContext';
+import { Link } from 'react-router-dom';
 
 function Wishlist() {
     const { state } = useCart()
     const { wishlistState, wishlistDispatch } = useWishlist()
     const { token } = useAuth()
+    const { cartDispatch, cartState } = useProductCart()
     const { wishlistCollection } = wishlistState
     useDocumentTitle(`WIshlist ${state.itemsInWishlist} `)
 
@@ -59,6 +63,25 @@ function Wishlist() {
                                         Remove from Wishlist
                                     </span>
                                 </button>
+                                {
+                                    cartState.productCollection.find(items => items._id === product._id) ?
+
+                                        <Link to='/cart' ><button
+                                            className=" btn Card-button asideAlink"
+                                        >
+                                            <span className="btn-txt-colr pTectColor">
+                                                Go to the Cart{" "}
+                                            </span>
+                                        </button ></Link> : <button
+                                            className=" btn Card-button asideAlink"
+                                            onClick={() => {
+                                                { AddToCart(token, product, cartDispatch) }
+                                            }}
+                                        >
+                                            <span className="btn-txt-colr pTectColor">
+                                                Add to Cart{" "}
+                                            </span>
+                                        </button>}
                             </footer>
                             <div className="spacer"></div>
                         </div >
