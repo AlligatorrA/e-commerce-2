@@ -38,6 +38,7 @@
     object-fit: cover;
   position: relative;
   height: 40vh;
+  font-size: 0.7em;
 }
 .rightSideBox{
       grid-column: 1/11;

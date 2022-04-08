@@ -24,7 +24,7 @@ function Home() {
                     <div className="leftSideBox marginAll dis-flex coln-flex  just-center align-center">
                         <div className="spacerhalf"></div>
                         <h1>Time</h1>
-                        <h2 className='marginAll'>No Seiously! What is Time..?</h2>
+                        <h2 className='marginAll'>No Seriously! What is Time..?</h2>
                         <div className="spacerhalf"></div>
                         <h2>Is Time Linear, Spiral or a 'Never Ending Circle'...?</h2>
                         <p className='marginAll'><b><i>'The end is the beginning, and the beginning is the end.'</i>...#Dark</b></p>

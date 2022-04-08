@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import './Styles/Product.css'
 import './Styles/Asides.css'
 import './Styles/navbar.css'
@@ -30,7 +28,6 @@ import { useWishlist } from "./context-folder/wishList-context";
 const ProductList = ({ product }) => {
 
     const navigate = useNavigate();
-    const { dispatch } = useCart();
     const { cartState, cartDispatch } = useProductCart();
     const { theme, asideShow } = useTheme()
     const { token } = useAuth()
@@ -39,7 +36,7 @@ const ProductList = ({ product }) => {
     return (
 
 
-        <div className="card_container" style={{ width: asideShow ? '100vw' : 'calc(100vw - 23rem)' }}>
+        <div className="card_container" style={{ width: asideShow ? '100vw' : '23rem' }}>
             <Link to={`/ProductDetails/${product._id}`} style={{ color: theme === "light" ? "#15141a" : "white" }}>
                 <div className="cardImageBox">
                     <i className="fas fa-heart cross_icon pTectColor"
@@ -147,7 +144,7 @@ const ProductPage = () => {
                     <div className="mappedProduct">
                         {
                             loader && <h1>
-                                <img src={loadingImg} width={400} alt='Loading...' /></h1>
+                                <img src={loadingImg} width={400} alt='Loading...' /> loading</h1>
                         }
                         {
                             data?.products && brandedProduct.map((product, _id) => (
