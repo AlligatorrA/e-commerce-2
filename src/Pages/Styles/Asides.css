@@ -11,7 +11,7 @@
 
 .doc_aside {
     border-right: 2px solid var(--primary-textColor);
-    min-width: 23rem;
+    min-width: 19rem;
     overflow-y: scroll;
 }
 
