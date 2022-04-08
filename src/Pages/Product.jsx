@@ -144,7 +144,7 @@ const ProductPage = () => {
                     <div className="mappedProduct">
                         {
                             loader && <h1>
-                                <img src={loadingImg} width={400} alt='Loading...' /> loading</h1>
+                                <img src={loadingImg} width={300} alt='Loading...' /></h1>
                         }
                         {
                             data?.products && brandedProduct.map((product, _id) => (

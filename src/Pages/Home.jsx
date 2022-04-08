@@ -53,7 +53,7 @@ function Home() {
                     <hr />
                     {
                         loader &&
-                        <img src={loadingImg} width={400} alt='Loading...' />
+                        <img src={loadingImg} width={300} alt='Loading...' />
                     }
                 </div>
             </div>

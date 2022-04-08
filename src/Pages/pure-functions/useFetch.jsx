@@ -6,7 +6,7 @@ function useFetch(url) {
     const [error, setError] = useState(null)
     useEffect(() => {
         const abortCont = new AbortController();
-        // setLoader(true)
+        setLoader(true)
 
         setTimeout(() => {
             const dataFetch = async () => {
