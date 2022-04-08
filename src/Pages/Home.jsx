@@ -11,11 +11,13 @@ import './Styles/navbar.css'
 import './Styles/Necessary.css'
 import './Styles/Universal.css'
 import useDocumentTitle from './pure-functions/useDocumentTitle';
+import { useTheme } from './context-folder/theme-context';
 
 function Home() {
 
     const { data, loader } = useFetch('/api/categories')
     useDocumentTitle('A TIME SHOP - Buy Your Time, Buy Your Desire')
+    const { theme } = useTheme()
     return (
         <div>
 
@@ -67,10 +69,14 @@ function Home() {
                             <div className="homContainer">
                                 <div className=" leftSideBox ">
                                     <img className='img-div' src={items.imgUrl} width='80%' height="80%" alt="" />
+
                                 </div>
                                 <div className=" rightSideBox marginAll">
                                     <div className="leftSideBox dis-flex coln-flex  just-center align-center">
+
                                         <img src={items.iconUrl} width='340px' alt="" />
+
+
                                         <div className="spacer01"></div>
                                         <h2 className='pTectColor'>   {items.description}</h2>
                                         <div className="spacerhalf"></div>

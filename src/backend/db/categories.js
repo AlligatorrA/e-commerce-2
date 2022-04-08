@@ -22,7 +22,7 @@ export const categories = [
     detail: "wear brand in affordable price",
     discount: ' A Digital silicon Smart band with 29% off... ',
     iconUrl: "https://www.clipartmax.com/png/full/252-2523415_rolex-logo-transparent-background-rolex-logo-png.png",
-    imgUrl: 'https://www.hotreplicawatch.co.uk/wp-content/uploads/2020/03/Rolex-372-1.jpg'
+    imgUrl: 'https://images.unsplash.com/photo-1605101232508-283d0cd4909e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cm9sZXh8ZW58MHx8MHx8&w=1000&q=80'
   },
   {
     _id: uuid(),
