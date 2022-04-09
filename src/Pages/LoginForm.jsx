@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from "../Pages/context-folder/auth-context";
 
 function LoginForm() {
-    const navigate = useNavigate()
     const { LoginFunc, loginData, setLoginData } = useAuth()
     const [eye, setEye] = useState(false)
     const [password, setPassword] = useState('password')

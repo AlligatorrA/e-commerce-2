@@ -1,3 +1,11 @@
 .cardWidth2{
     max-width: 110rem;
 }
+@media screen and (max-width:700px) {
+    .cart-Container {
+        display: flex;
+        flex-direction: column;
+    
+}
+
+}

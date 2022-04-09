@@ -78,7 +78,7 @@ function Cart() {
                                     <div className='dis-flex align-center coln-flex just-center'>
                                         <p>
 
-                                            &#8377; {preProducts.price} + &#8377;40 DeliveryCharge
+                                            &#8377; {preProducts.price} + &#8377;<s> 40 DeliveryCharge</s>
                                         </p>
                                         <button className="btn Card-button asideAlink"
                                             onClick={() => {
@@ -108,7 +108,7 @@ function Cart() {
                             <h2> products Detail</h2>
                             <hr />
                             <div className='card-footer padTob'>
-                                <p>Price(  items)</p>
+                                <p>Price ( items : {cartState.itemsInCart} )</p>
                                 <p>&#8377; {currentPrice}</p>
                             </div>
                             <div className='card-footer padTob'>
@@ -116,8 +116,8 @@ function Cart() {
                                 <p>- &#8377; {discountPrice}</p>
                             </div>
                             <div className='card-footer padTob'>
-                                <p> Delivery Charges</p>
-                                <p>&#8377; 40</p>
+                                <p> <del> Delivery Charges  </del></p>
+                                <p> <del> &#8377; 40</del> </p>
                             </div>
                             <hr />
                             <div className='card-footer f24px padTob'>

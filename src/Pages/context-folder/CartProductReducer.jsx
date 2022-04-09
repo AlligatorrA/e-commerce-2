@@ -1,4 +1,3 @@
-import React from 'react'
 
 const ReducerFunc2 = (pre, cur) => {
     switch (cur.type) {

@@ -67,6 +67,7 @@ function Navbar() {
 
                         {
                             token ?
+
                                 <div>
                                     <i className="fa-solid fa-bars padding01 pTectColor hamburger " onClick={setNavColnToogle}></i>
                                     {navToogle && <div className='padding01 margin-left options_nav2 align-center'  >

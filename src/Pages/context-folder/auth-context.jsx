@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
+    const location = useLocation()
     const localStorageToken = JSON.parse(localStorage.getItem('loginToken'));
     const [token, setToken] = useState(localStorageToken && localStorageToken.token)
     const [loginData, setLoginData] = useState({
@@ -16,7 +17,8 @@ const AuthProvider = ({ children }) => {
             const { data } = await axios.post('/api/auth/login', loginData)
             localStorage.setItem('loginToken', JSON.stringify({ token: data.encodedToken }))
             setToken(data.encodedToken)
-            navigate("/")
+            // navigate(location?.state?.from?.pathname, { replace: true });
+            navigate('/Product');
         } catch (error) {
             console.log(error);
         }

@@ -11,6 +11,7 @@ import { FormDisplay } from "./Pages/ProfileFolder/AddressManagment";
 import Wishlist from "./Pages/Wishlist";
 import LoginForm from "./Pages/LoginForm";
 import ProductsDetails from "./Pages/ProductsDetails";
+import RequireAuth from "./Pages/RequireAuth";
 
 function App() {
   const { theme } = useTheme()
@@ -25,13 +26,22 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/Product" element={<ProductPage />} />
-        <Route path="/ProductDetails/:productId" element={<ProductsDetails />} />
-        <Route path="/Wishlist" element={<Wishlist />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/User" element={<User />} />
-        <Route path='/address-management' element={<FormDisplay />} />
+        <Route path="/User" element={
+          <RequireAuth>
+            <User />
+          </RequireAuth>
+        } />
+        <Route path="/Wishlist" element={
+          <RequireAuth>
+
+            <Wishlist />
+          </RequireAuth>
+        } />
+        <Route path="/Product" element={<ProductPage />} />
         <Route path='/LoginForm' element={< LoginForm />} />
+        <Route path='/address-management' element={<FormDisplay />} />
+        <Route path="/ProductDetails/:productId" element={<ProductsDetails />} />
         <Route path='*' element={
           <div className='userClass dis-flex align-center just-center'>
             <h2>Oops! You have been misguded mate! Nothing here....<span role='emojii' aria-label="emoji"> 👻👻👻 </span></h2>
