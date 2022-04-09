@@ -15,7 +15,7 @@ max-height: 200px;
 }
 .maxWidth{
     max-width:  1500px;
-    margin: auto;
+    
 }
 .rltPos{
     position: relative;
@@ -23,6 +23,7 @@ max-height: 200px;
 @media screen and (max-width:950px) {
     .maxWidth{
         flex-direction: column;
+        min-height: 30rem;
     }
     .cartWidth{
 flex-direction: column;

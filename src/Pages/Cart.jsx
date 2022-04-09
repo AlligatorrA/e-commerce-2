@@ -33,8 +33,8 @@ function Cart() {
                 <div className="spacerhalf"></div>
                 <hr />
                 <div className="spacerhalf"></div>
-                <div className='dis-flex maxWidth overflow'>
-                    <div className='dis-flex coln-flex  overflow'>
+                <div className='dis-flex maxWidth '>
+                    <div className='dis-flex coln-flex '>
                         {
                             productCollection.map(preProducts =>
 
