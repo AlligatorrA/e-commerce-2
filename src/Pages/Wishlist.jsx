@@ -7,11 +7,13 @@ import { AddToCart } from './sevices/CartSevice';
 import { RemoveFromWishlist } from './sevices/WishlistService';
 import { useProductCart } from './context-folder/productCartContext';
 import { Link } from 'react-router-dom';
+import { useTheme } from './context-folder/theme-context';
 
 function Wishlist() {
     const { state } = useCart()
     const { wishlistState, wishlistDispatch } = useWishlist()
     const { token } = useAuth()
+    const { ShowToast, showToast, toast } = useTheme()
     const { cartDispatch, cartState } = useProductCart()
     const { wishlistCollection } = wishlistState
     useDocumentTitle(`WIshlist ${state.itemsInWishlist} `)
@@ -21,6 +23,7 @@ function Wishlist() {
         <div className='cart-Container overflow'>
             <div className="spacer01"></div>
             <h1>Wishlist {state.itemsInWishlist}</h1>
+            <span style={{ display: showToast ? "block" : "none" }} className="toast-added toast-add">{toast}</span>
             <div className="mappedProduct">
                 {
                     wishlistCollection.map(product => (
@@ -55,7 +58,11 @@ function Wishlist() {
                             <footer className="card-footer ">
 
                                 <button className="btn Card-button asideAlink"
-                                    onClick={() => RemoveFromWishlist(token, product._id, wishlistDispatch)}
+                                    onClick={() => {
+                                        ShowToast(" Removing From Wishlist")
+                                        RemoveFromWishlist(token, product._id, wishlistDispatch)
+                                    }}
+
                                 >
                                     {" "}
                                     <span className="btn-txt-colr pTectColor font1en ">
@@ -75,6 +82,7 @@ function Wishlist() {
                                         </button ></Link> : <button
                                             className=" btn Card-button asideAlink"
                                             onClick={() => {
+                                                ShowToast(" Adding to Cart")
                                                 { AddToCart(token, product, cartDispatch) }
                                             }}
                                         >

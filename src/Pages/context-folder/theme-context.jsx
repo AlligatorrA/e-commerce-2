@@ -35,8 +35,23 @@ const ThemeProvider = ({ children }) => {
         setAsideShow((asideShow) => !asideShow);
     }
 
+
+    // *******************Toast*****************
+    const [toast, setToast] = useState('')
+    const [showToast, setShowToast] = useState(false)
+
+    const ShowToast = (child) => {
+        setShowToast(true)
+        setToast(child)
+        setTimeout(() => {
+            setShowToast(false)
+            setToast('')
+        }, 3000);
+
+    }
+
     return (
-        <ThemeContext.Provider value={{ theme, ThemeToogle, asideShow, showProduct }}>
+        <ThemeContext.Provider value={{ theme, ThemeToogle, asideShow, showProduct, toast, ShowToast, showToast }}>
             {children}
         </ThemeContext.Provider>
     );

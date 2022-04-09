@@ -2,7 +2,8 @@
     height: 77.3vh;
 }
 .cartWidth{
-width: 900px;
+max-width: 900px;
+min-width: 400px;
 max-height: 200px;
 }
 .pDetWid{
@@ -18,4 +19,17 @@ max-height: 200px;
 }
 .rltPos{
     position: relative;
+}
+@media screen and (max-width:950px) {
+    .maxWidth{
+        flex-direction: column;
+    }
+    .cartWidth{
+flex-direction: column;
+max-width: 400px;
+min-width: 290px;
+max-height: 600px;
+justify-content: center;
+align-items: center;
+}
 }

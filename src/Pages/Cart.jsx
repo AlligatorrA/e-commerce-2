@@ -12,10 +12,12 @@ import { useAuth } from './context-folder/auth-context'
 import { Bill } from './pure-functions/billFunc'
 import { AddToWishlist } from './sevices/WishlistService'
 import { useWishlist } from './context-folder/wishList-context'
+import { useTheme } from './context-folder/theme-context'
 
 function Cart() {
     const { cartState, cartDispatch } = useProductCart()
     const { wishlistDispatch } = useWishlist()
+    const { ShowToast, showToast, toast } = useTheme()
     const { token } = useAuth()
     const { productCollection } = cartState;
     useDocumentTitle(`Cart (${cartState.itemsInCart})`)
@@ -27,6 +29,7 @@ function Cart() {
             <div className='cart-Container overflow'>
                 <div className="spacer01"></div>
                 <h1 className='dis-flex just-center'>Cart: {productCollection.length}</h1>
+                <span style={{ display: showToast ? "block" : "none" }} className="toast-added toast-add">{toast}</span>
                 <div className="spacerhalf"></div>
                 <hr />
                 <div className="spacerhalf"></div>
@@ -45,6 +48,7 @@ function Cart() {
                                         <div className='dis-flex align-center padTob '>
 
                                             <button className='btn pTectColor f24px' onClick={() => {
+                                                ShowToast(" Increasing item")
                                                 updateCart(
                                                     token,
                                                     preProducts._id,
@@ -57,6 +61,7 @@ function Cart() {
                                             {
                                                 preProducts.qty > 1 ?
                                                     <button className='btn pTectColor f24px' onClick={() => {
+                                                        ShowToast(" Decreasing item")
                                                         updateCart(
                                                             token,
                                                             preProducts._id,
@@ -64,25 +69,32 @@ function Cart() {
                                                             cartDispatch
                                                         );
                                                     }} >&dArr; - &dArr;</button> : <button className='btn pTectColor f24px' onClick={() => {
+                                                        ShowToast(" Removing to Cart")
                                                         RemoveFromCart(token, preProducts._id, cartDispatch)
                                                     }} > <i className="fa-solid fa-trash"></i> </button>
                                             }
                                         </div>
                                     </div>
-                                    <div className='dis-flex align-center'>&#8377; {preProducts.price} + &#8377;40 DeliveryCharge</div>
-                                    <button className="btn Card-button asideAlink"
-                                        onClick={() => {
-                                            RemoveFromCart(token, preProducts._id, cartDispatch)
-                                            AddToWishlist(token, preProducts, wishlistDispatch)
-                                        }}
-                                    >
-                                        {" "}
-                                        <span className="btn-txt-colr pTectColor ">
+                                    <div className='dis-flex align-center coln-flex just-center'>
+                                        <p>
+
+                                            &#8377; {preProducts.price} + &#8377;40 DeliveryCharge
+                                        </p>
+                                        <button className="btn Card-button asideAlink"
+                                            onClick={() => {
+                                                ShowToast(`Removing from Cart Adding to Wishlist`)
+                                                RemoveFromCart(token, preProducts._id, cartDispatch)
+                                                AddToWishlist(token, preProducts, wishlistDispatch)
+                                            }}
+                                        >
                                             {" "}
-                                            Move to Wishlist
-                                        </span>
-                                        <i className="fas fa-heart pTectColor marginAll"></i>{" "}
-                                    </button>
+                                            <span className="btn-txt-colr pTectColor ">
+                                                {" "}
+                                                Move to Wishlist
+                                            </span>
+                                            <i className="fas fa-heart pTectColor marginAll"></i>{" "}
+                                        </button>
+                                    </div>
                                 </div>
                             )
                         }
@@ -91,7 +103,7 @@ function Cart() {
 
 
 
-                    <div className="card_container marginL2em   pDetWid">
+                    <div className="card_container marginAll   pDetWid">
                         <section className="card_body">
                             <h2> products Detail</h2>
                             <hr />

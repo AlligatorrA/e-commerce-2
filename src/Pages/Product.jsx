@@ -29,9 +29,9 @@ const ProductList = ({ product }) => {
 
     const navigate = useNavigate();
     const { cartState, cartDispatch } = useProductCart();
-    const { theme, asideShow } = useTheme()
+    const { theme, asideShow, ShowToast } = useTheme()
     const { token } = useAuth()
-    const { wishlistDispatch } = useWishlist()
+    const { wishlistDispatch, wishlistState } = useWishlist()
     const { productCollection } = cartState
     return (
 
@@ -70,31 +70,44 @@ const ProductList = ({ product }) => {
                     className=" btn Card-button asideAlink"
                 >
                     <span className="btn-txt-colr pTectColor">
-                        Going to the Cart{" "}
+                        Go to  Cart{" "}
                     </span>
                 </button></Link> :
                     <button
                         className=" btn Card-button asideAlink"
                         onClick={() => {
+                            ShowToast(" Adding to Cart")
                             { token ? AddToCart(token, product, cartDispatch) : navigate('/LoginForm') }
                         }}
                     >
+
                         <span className="btn-txt-colr pTectColor">
                             Add to Cart{" "}
                         </span>
                     </button>}
-                <button className="btn Card-button asideAlink"
-                    onClick={() => {
-                        token ? AddToWishlist(token, product, wishlistDispatch) : navigate("/LoginForm")
-                    }}
-                >
-                    {" "}
-                    <span className="btn-txt-colr pTectColor ">
-                        {" "}
-                        Add to Wishlist
-                    </span>
-                    <i className="fas fa-heart pTectColor marginAll"></i>{" "}
-                </button>
+                {
+                    wishlistState.wishlistCollection.find(items => items._id === product._id) ?
+                        <Link to='/Wishlist'><button
+                            className=" btn Card-button asideAlink"
+                        >
+                            <span className="btn-txt-colr pTectColor">
+                                Go to  Wishlist{" "}
+                            </span>
+                        </button> </Link> :
+                        <button className="btn Card-button asideAlink"
+                            onClick={() => {
+                                ShowToast("   Adding to Wishlist")
+                                token ? AddToWishlist(token, product, wishlistDispatch) : navigate("/LoginForm")
+                            }}
+                        >
+                            {" "}
+                            <span className="btn-txt-colr pTectColor ">
+                                {" "}
+                                Add to Wishlist
+                            </span>
+                            <i className="fas fa-heart pTectColor marginAll"></i>{" "}
+                        </button>
+                }
             </footer>
             <div className="spacer"></div>
         </div >
@@ -104,9 +117,8 @@ const ProductList = ({ product }) => {
 const ProductPage = () => {
 
     const { state } = useCart()
-    const { asideShow, showProduct } = useTheme()
+    const { asideShow, showProduct, toast, showToast } = useTheme()
     const { data, loader } = useFetch('/api/products');
-
     useDocumentTitle(`product Page - where you buy watches...`)
 
 
@@ -140,6 +152,7 @@ const ProductPage = () => {
                 <div className="spacerhalf"></div>
                 <div className="marginAll padding01 overflow  ">
                     <h1 className="dis-flex just-center">Watches in Stock </h1>
+                    <span style={{ display: showToast ? "block" : "none" }} className="toast-added toast-add">{toast}</span>
                     <div className="spacerhalf"></div>
                     <div className="mappedProduct">
                         {
