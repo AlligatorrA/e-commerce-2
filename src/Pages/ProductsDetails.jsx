@@ -23,7 +23,7 @@ const ProductsDetails = () => {
         <>
             {
                 productsData &&
-                <div className='cart-Container card-footer cartWidth2 padding01  bd-rad ' >
+                <div className='cart-Container card-footer cartWidth2 padding01 overflow bd-rad ' >
 
                     <span style={{ display: showToast ? "block" : "none" }} className="toast-added toast-add">{toast}</span>
                     <img
