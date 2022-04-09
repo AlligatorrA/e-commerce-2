@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAuth } from './context-folder/auth-context';
-import { useCart } from './context-folder/cart-context';
 import { useWishlist } from './context-folder/wishList-context';
 import useDocumentTitle from './pure-functions/useDocumentTitle';
 import { AddToCart } from './sevices/CartSevice';

@@ -17,7 +17,6 @@ function Home() {
 
     const { data, loader } = useFetch('/api/categories')
     useDocumentTitle('A TIME SHOP - Buy Your Time, Buy Your Desire')
-    const { theme } = useTheme()
     return (
         <div>
 

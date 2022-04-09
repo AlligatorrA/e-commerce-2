@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "./context-folder/auth-context";
-import { useCart } from "./context-folder/cart-context";
 import { useProductCart } from "./context-folder/productCartContext";
 import { useTheme } from "./context-folder/theme-context";
 import { useWishlist } from "./context-folder/wishList-context";
@@ -10,10 +9,9 @@ import './Styles/Necessary.css'
 import './Styles/Universal.css'
 
 function Navbar() {
-    const { cartState, cartDispatch } = useProductCart()
+    const { cartState } = useProductCart()
     const { wishlistState } = useWishlist()
     const { ThemeToogle, theme } = useTheme();
-    const { state } = useCart()
     const { token, LogOutHandler } = useAuth()
     const [navToogle, setNavToogle] = useState(true)
     const setNavColnToogle = () => {
