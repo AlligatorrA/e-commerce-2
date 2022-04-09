@@ -3,11 +3,13 @@ const WishReducer = (pre, cur) => {
         case 'ADD_TO_WISHLIST':
             return {
                 ...pre,
+                itemsInWishlist: pre.itemsInWishlist + 1,
                 wishlistCollection: cur.payload
             }
         case 'REMOVE_FROM_WISHLIST':
             return {
                 ...pre,
+                itemsInWishlist: pre.itemsInWishlist - 1,
                 wishlistCollection: cur.payload
             }
 

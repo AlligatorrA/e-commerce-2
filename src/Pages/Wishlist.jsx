@@ -10,19 +10,18 @@ import { Link } from 'react-router-dom';
 import { useTheme } from './context-folder/theme-context';
 
 function Wishlist() {
-    const { state } = useCart()
     const { wishlistState, wishlistDispatch } = useWishlist()
     const { token } = useAuth()
     const { ShowToast, showToast, toast } = useTheme()
     const { cartDispatch, cartState } = useProductCart()
-    const { wishlistCollection } = wishlistState
-    useDocumentTitle(`WIshlist ${state.itemsInWishlist} `)
+    const { wishlistCollection, itemsInWishlist } = wishlistState
+    useDocumentTitle(`WIshlist ${itemsInWishlist} `)
 
 
     return (
         <div className='cart-Container overflow'>
             <div className="spacer01"></div>
-            <h1>Wishlist {state.itemsInWishlist}</h1>
+            <h1>Wishlist {itemsInWishlist}</h1>
             <span style={{ display: showToast ? "block" : "none" }} className="toast-added toast-add">{toast}</span>
             <div className="mappedProduct">
                 {

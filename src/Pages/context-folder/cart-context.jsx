@@ -8,9 +8,6 @@ const CartContext = createContext(defaulCart);
 
 const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(ReducerFunc, {
-        itemsInCart: 0,
-        totalPrice: 0,
-        productCollection: [],
         sortBy: null,
         price: 20000,
         rating: "",
@@ -27,8 +24,6 @@ const CartProvider = ({ children }) => {
             blancpain: false,
             omega: false
         },
-        itemsInWishlist: 0,
-        wishlistCollection: [],
         productSearchFilter: ''
     });
     return (

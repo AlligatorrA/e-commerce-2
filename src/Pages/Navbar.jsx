@@ -4,12 +4,14 @@ import { useAuth } from "./context-folder/auth-context";
 import { useCart } from "./context-folder/cart-context";
 import { useProductCart } from "./context-folder/productCartContext";
 import { useTheme } from "./context-folder/theme-context";
+import { useWishlist } from "./context-folder/wishList-context";
 import './Styles/navbar.css'
 import './Styles/Necessary.css'
 import './Styles/Universal.css'
 
 function Navbar() {
     const { cartState, cartDispatch } = useProductCart()
+    const { wishlistState } = useWishlist()
     const { ThemeToogle, theme } = useTheme();
     const { state } = useCart()
     const { token, LogOutHandler } = useAuth()
@@ -81,7 +83,7 @@ function Navbar() {
                                                 className="pTectColor padding01 dis-flex coln-flex btn  align-center  rltPos" >
                                                 <i className="fa-solid fa-heart"></i>wishlist
                                                 <span className="cross_icon"
-                                                > {state.itemsInWishlist}</span>
+                                                > {wishlistState.itemsInWishlist}</span>
                                             </NavLink>
                                         </h3>
                                         <h3>
@@ -93,7 +95,7 @@ function Navbar() {
                                                 }}
                                                 className="pTectColor padding01 dis-flex coln-flex btn rltPos" >
                                                 <i className="fa-solid fa-cart-plus">
-                                                </i>cart
+                                                </i>Cart
                                                 <span className="cross_icon"
                                                 > {cartState.itemsInCart}</span>
                                             </NavLink>
